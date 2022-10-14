@@ -58,15 +58,12 @@ public class Myshop {
         if (st != null) {
             st.createProduct();
             if (st.createProduct() == true){
-                System.out.println("1");
                 System.out.println("produit ajouter avec succés");
             }
             else {
-                System.out.println("2");
                 System.out.println("Le produit existe deja, voulez vous modifier la quantité");
             }
         } else {
-            System.out.println("5");
             System.out.println("Le stock saisie n'existe pas");
         }
     }
@@ -113,7 +110,6 @@ public class Myshop {
         }
         return null;
     }
-
     public static void printMenu () {
         System.out.println("--------------------------------Menu-------------------------------------");
         System.out.println("          1. Creer un stock                                               ");
