@@ -46,7 +46,6 @@ public class Stock {
             int qty = Integer.parseInt(saisieChaine());
             Product pd = new Product(nameP, qty);
             products.add(pd);
-            System.out.println("3");
             return true;
         }
 

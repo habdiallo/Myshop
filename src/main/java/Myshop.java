@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Myshop {
@@ -14,7 +15,9 @@ public class Myshop {
         printMenu();
         choix =saisieChaine();
 
-        while (!choix.equals("q")) {
+        while (true) {
+            assert choix != null;
+            if (choix.equals("q")) break;
             switch (choix) {
                 case "1":
                     createStock();
@@ -57,7 +60,7 @@ public class Myshop {
         Stock st = returnStock(nameStk);
         if (st != null) {
             st.createProduct();
-            if (st.createProduct() == true){
+            if (st.createProduct()){
                 System.out.println("produit ajouter avec succés");
             }
             else {
@@ -78,7 +81,7 @@ public class Myshop {
             String name = saisieChaine();
             if (st.returnProduct(name) != null) {
                 System.out.println("Saisissez quantité que vous voulez ajouter");
-                int qty = Integer.parseInt(saisieChaine());
+                int qty = Integer.parseInt(Objects.requireNonNull(saisieChaine()));
                 if (st.returnProduct(name).editQtyProd(qty)) {
                     System.out.println("quantité modifiable");
                     System.out.println(st.returnProduct(name).getQuantityProd());
@@ -122,8 +125,7 @@ public class Myshop {
         try {
             BufferedReader buff = new BufferedReader
                     (new InputStreamReader(System.in));
-            String chaine=buff.readLine();
-            return chaine;
+            return buff.readLine();
         }
         catch(IOException e) {
             System.out.println(" impossible de travailler"
