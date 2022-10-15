@@ -5,6 +5,11 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
+/**
+ * @author habdiallo
+ * @version 1.0
+ * @since 2022
+ */
 public class Myshop {
 
 
@@ -54,13 +59,20 @@ public class Myshop {
         System.out.println("Stock créer avec succés");
     }
 
+    /**
+     * Ajouter un produit dans un stock
+     */
     public static void addProduct() {
         System.out.println("Choissez le nom stock");
         String nameStk = saisieChaine();
         Stock st = returnStock(nameStk);
         if (st != null) {
-            st.createProduct();
-            if (st.createProduct()){
+            System.out.println("saisissez le nom du produit");
+            String nameP = saisieChaine();
+            System.out.println("saisissez la quantité du produit");
+            int qty = Integer.parseInt(saisieChaine());
+            Product product = new Product(nameP, qty);
+            if (st.addProductToList(product)){
                 System.out.println("produit ajouter avec succés");
             }
             else {
@@ -72,6 +84,9 @@ public class Myshop {
     }
 
 
+    /**
+     * Ajouter/Retirer une quantité à un produit s'il existe dans le stock
+     */
     public static void addQtyProd() {
         System.out.println("Choissez le nom stock");
         String nameStk = saisieChaine();
@@ -92,6 +107,9 @@ public class Myshop {
         } else System.out.println("Le stock saisie n'existe pas");
     }
 
+    /**
+     * Afficher les details d'un produit
+     */
     public static void printProduct (){
         System.out.println("Choissez le nom stock");
         String nameStk = saisieChaine();
@@ -106,6 +124,12 @@ public class Myshop {
                 System.out.println(st.returnProduct(name));
         }else System.out.println("Le stock saisie n'existe pas");
     }
+
+    /**
+     * Retourner un stock s'il existe ou null
+     * @param nameStk
+     * @return
+     */
     public static Stock returnStock(String nameStk){
         for(Stock n : stocks){
             if (n.getNameStock().equals(nameStk))
@@ -113,6 +137,10 @@ public class Myshop {
         }
         return null;
     }
+
+    /**
+     * MENU PRINCIPAL
+     */
     public static void printMenu () {
         System.out.println("--------------------------------Menu-------------------------------------");
         System.out.println("          1. Creer un stock                                               ");
@@ -121,6 +149,11 @@ public class Myshop {
         System.out.println("          4. Ajouter/ Retirer une quantité d'un produit                   ");
         System.out.println("          Q. Quiter                           ");
     }
+
+    /**
+     * SAISIE DE CHAINE
+     * @return
+     */
     public static String saisieChaine () {
         try {
             BufferedReader buff = new BufferedReader

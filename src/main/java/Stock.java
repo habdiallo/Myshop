@@ -3,6 +3,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+
+/**
+ * @author habdiallo
+ * @version 1.0
+ * @since 2022
+ */
 public class Stock {
     @Override
     public String toString() {
@@ -38,20 +44,24 @@ public class Stock {
         this.products = new ArrayList<>();
     }
 
-    public boolean createProduct(){
-        System.out.println("Saisissez le nom du produit");
-        String nameP = saisieChaine();
-        if (returnProduct(nameP) == null){
-            System.out.println("Saisissez quantité du produit");
-            int qty = Integer.parseInt(saisieChaine());
-            Product pd = new Product(nameP, qty);
-            products.add(pd);
+    /**
+     *
+     * @param pdct
+     * @return
+     */
+    public boolean addProductToList(Product pdct){
+        if (returnProduct(pdct.getNameProd())==null){
+            products.add(pdct);
             return true;
         }
-
         return false;
     }
 
+    /**
+     *
+     * @param nameP
+     * @return
+     */
     public Product returnProduct(String nameP){
         for(Product n : products){
             if (n !=null && n.getNameProd().equals(nameP))
@@ -59,21 +69,5 @@ public class Stock {
         }
         return null;
     }
-
-    public static String saisieChaine () {
-        try {
-            BufferedReader buff = new BufferedReader
-                    (new InputStreamReader(System.in));
-            String chaine=buff.readLine();
-            return chaine;
-        }
-        catch(IOException e) {
-            System.out.println(" impossible de travailler"
-                    +e);
-            return null;
-        }
-    }
-
-
 
 }

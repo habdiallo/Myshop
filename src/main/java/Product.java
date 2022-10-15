@@ -1,3 +1,10 @@
+/**
+ * @author habdiallo
+ * @version 1.0
+ * @since 2022
+ */
+
+
 public class Product {
     private int idProd;
     private String nameProd;
