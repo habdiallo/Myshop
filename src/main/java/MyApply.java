@@ -1,7 +1,12 @@
 public class MyApply {
+    /**
+     * @author habdiallo
+     * @version 2.0
+     * @since 2022
+     */
     public static void main(String[] args) {
         String choix;
-        Myshop.printMenu();
+        Myshop.printMenuPrincipal();
         choix = Myshop.saisieChaine();
 
         while (true) {
@@ -12,21 +17,12 @@ public class MyApply {
                     Myshop.createStock();
                     break;
                 case "2":
-                    Myshop.addProduct();
-                    break;
-                case "3":
-                    Myshop.printProduct();
-                    break;
-                case "4":
-                    Myshop.addQtyProd();
-                    break;
-                case "5":
-                    System.out.println("choix 5");
+                    Myshop.manageStock();
                     break;
                 default:
                     System.out.println("choix incorrect!");
             }
-            Myshop.printMenu();
+            Myshop.printMenuPrincipal();
             choix = Myshop.saisieChaine();
         }
     }

@@ -8,7 +8,7 @@ import java.util.ListIterator;
 
 /**
  * @author habdiallo
- * @version 1.0
+ * @version 2.0
  * @since 2022
  */
 public class Stock {
@@ -61,8 +61,8 @@ public class Stock {
 
     /**
      * Return un produit s'il existe dans la liste, sinon retourn null
-     * @param nameP
-     * @return
+     * @param nameP Le nom du produit qu'on retrouver dans la liste de produit
+     * @return return un produit s'il existe, sinon retourne null.
      */
     public Product returnProduct(String nameP){
         ListIterator<Product> listIterator = products.listIterator();
