@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.Scanner;
+
 
 /**
  * @author habdiallo
@@ -11,41 +11,6 @@ import java.util.Scanner;
  * @since 2022
  */
 public class Myshop {
-
-
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int rep3;
-        String choix;
-        printMenu();
-        choix =saisieChaine();
-
-        while (true) {
-            assert choix != null;
-            if (choix.equals("q")) break;
-            switch (choix) {
-                case "1":
-                    createStock();
-                    break;
-                case "2":
-                    addProduct();
-                    break;
-                case "3":
-                    printProduct();
-                    break;
-                case "4":
-                    addQtyProd();
-                break;
-                case "5":
-                    System.out.println("choix 5");
-                    break;
-                default:
-                    System.out.println("choix incorrect!");
-            }
-            printMenu();
-            choix =saisieChaine();
-        }
-    }
 
     public static ArrayList <Stock> stocks = new ArrayList<>();
 
@@ -70,7 +35,7 @@ public class Myshop {
             System.out.println("saisissez le nom du produit");
             String nameP = saisieChaine();
             System.out.println("saisissez la quantité du produit");
-            int qty = Integer.parseInt(saisieChaine());
+            int qty = Integer.parseInt(Objects.requireNonNull(saisieChaine()));
             Product product = new Product(nameP, qty);
             if (st.addProductToList(product)){
                 System.out.println("produit ajouter avec succés");
@@ -98,7 +63,6 @@ public class Myshop {
                 System.out.println("Saisissez quantité que vous voulez ajouter");
                 int qty = Integer.parseInt(Objects.requireNonNull(saisieChaine()));
                 if (st.returnProduct(name).editQtyProd(qty)) {
-                    System.out.println("quantité modifiable");
                     System.out.println(st.returnProduct(name).getQuantityProd());
                 } else
                     System.out.println("pas assez de produit dans le stock pour supprimer la valeur inserer");
@@ -119,16 +83,17 @@ public class Myshop {
             String name = saisieChaine();
             if (st.returnProduct(name)==null)
                 System.out.println("Ce produit n'existe pas dans le stock");
-            else
+            else {
                 System.out.println(st);
                 System.out.println(st.returnProduct(name));
+            }
         }else System.out.println("Le stock saisie n'existe pas");
     }
 
     /**
      * Retourner un stock s'il existe ou null
-     * @param nameStk
-     * @return
+     * @param nameStk Recuppere le nom du stock saisie par l'utilisateur
+     * @return retourne n ou null
      */
     public static Stock returnStock(String nameStk){
         for(Stock n : stocks){
@@ -152,7 +117,7 @@ public class Myshop {
 
     /**
      * SAISIE DE CHAINE
-     * @return
+     * @return la chaine saisie
      */
     public static String saisieChaine () {
         try {

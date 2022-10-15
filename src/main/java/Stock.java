@@ -2,6 +2,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.ListIterator;
 
 
 /**
@@ -20,7 +22,7 @@ public class Stock {
 
     private String nameStock;
     private String addressStock;
-    private ArrayList <Product> products;
+    private final ArrayList <Product> products;
 
     public String getNameStock() {
         return nameStock;
@@ -58,14 +60,16 @@ public class Stock {
     }
 
     /**
-     *
+     * Return un produit s'il existe dans la liste, sinon retourn null
      * @param nameP
      * @return
      */
     public Product returnProduct(String nameP){
-        for(Product n : products){
-            if (n !=null && n.getNameProd().equals(nameP))
-                return n;
+        ListIterator<Product> listIterator = products.listIterator();
+        while (listIterator.hasNext()){
+            Product prod = listIterator.next();
+            if (prod.getNameProd().equals(nameP))
+                return prod;
         }
         return null;
     }
